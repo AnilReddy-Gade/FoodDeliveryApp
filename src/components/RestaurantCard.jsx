@@ -1,15 +1,21 @@
-const RestaurantCard = () => {
+import { CDN_URL } from "../utils/constants";
+const RestaurantCard = (props) => {
+  const { resData } = props;
+  const { cloudinaryImageId, name, avgRating, costForTwo, cuisines, sla } =
+    resData?.info || {};
   return (
     <div className="res-card">
       <img
         className="reslogo"
-        src="https://i.pinimg.com/736x/c5/d2/62/c5d262f3377da91a7229772026a2ec5c.jpg"
+        src={CDN_URL + cloudinaryImageId}
         alt="res-logo"
       />
-      <h3>Meghana Foods</h3>
-      <h4>Biryani,North Indian,Asian</h4>
-      <h4>4.3 stars</h4>
-      <h4>38 minutes</h4>
+      <h3>{name}</h3>
+      {/* */}
+      <h4>{cuisines?.join(",")}</h4>
+      <h4>{avgRating}</h4>
+      <h4>{sla?.deliveryTime} Minutes</h4>
+      <h4>{costForTwo}</h4>
     </div>
   );
 };
